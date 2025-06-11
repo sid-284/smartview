@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartView - Amazon Product Intelligence Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+    
+    <!-- Favicon links -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <!-- Force favicon refresh with timestamp -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}?v={{ range(1, 10000) | random }}">
+    
+    <!-- GSAP library for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body class="bg-app text-gray-100 min-h-screen flex flex-col font-inter">
+    <!-- Page Transition Overlay -->
+    <div class="page-transition-overlay"></div>
+    
+    <!-- Top Navigation -->
+    <nav class="bg-header shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="nav-container flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center logo-container" onclick="showPage('welcome')">
+                        <span class="text-3xl text-gradient font-bold mr-1 logo-text">Smart</span>
+                        <span class="text-3xl font-bold text-white logo-text">View</span>
+                    </a>
+                    <span class="text-xs text-blue-300 ml-2 bg-blue-900/30 px-2 py-1 rounded"></span>
+                </div>
+                <div class="hidden md:flex space-x-4 items-center">
+                    <a href="#" class="nav-link" onclick="showPage('welcome')">Home</a>
+                    <a href="#" class="nav-link" onclick="showPage('analyzer')">Analyzer</a>
+                    <a href="#" class="nav-link" onclick="showPage('comparison')">Compare</a>
+                    <a href="#" class="nav-link" onclick="showPage('chatbot')">Chatbot</a>
+                    <div class="theme-toggle ml-2" onclick="toggleTheme()">
+                        <i class="fas fa-sun sun"></i>
+                        <i class="fas fa-moon moon"></i>
+                        <div class="toggle-thumb"></div>
+                    </div>
+                    
+                </div>
+                <div class="md:hidden">
+                    <button type="button" class="text-gray-200 hover:text-white focus:outline-none" id="mobileMenuBtn">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden" id="mobileMenu">
+                <div class="flex flex-col space-y-3 mt-4 mb-4">
+                    <a href="#" class="mobile-nav-link" onclick="showPage('welcome')">Home</a>
+                    <a href="#" class="mobile-nav-link" onclick="showPage('analyzer')">Analyzer</a>
+                    <a href="#" class="mobile-nav-link" onclick="showPage('comparison')">Compare</a>
+                    <a href="#" class="mobile-nav-link" onclick="showPage('chatbot')">Chatbot</a>
+                    <div class="flex items-center space-x-2 mt-2 mb-2 px-2">
+                        <span class="text-sm text-gray-400">Theme:</span>
+                        <div class="theme-toggle" onclick="toggleTheme()">
+                            <i class="fas fa-sun sun"></i>
+                            <i class="fas fa-moon moon"></i>
+                            <div class="toggle-thumb"></div>
+                        </div>
+                    </div>
+                    <a href="#" class="nav-signup-btn text-center">Sign Up Free</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Container for Page Transitions -->
+    <div id="content-container">
+        <!-- Welcome Page -->
+        <div id="welcome-page" class="flex-1 page-content">
+            <!-- Hero Section -->
+            <section class="hero-section pt-16 pb-24">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-12 mb-12 md:mb-0">
+                            <h1 class="welcome-heading text-4xl md:text-5xl font-bold mb-6 leading-tight">Make smarter buying <span class="text-gradient">decisions</span> with AI-powered insights</h1>
+                            <p class="text-lg text-gray-300 mb-8">SmartView analyzes Amazon products and reviews to give you the complete picture beyond the star rating. Understand what real customers love, hate, and everything in between.</p>
+                            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                                <button onclick="showPage('analyzer')" class="btn-primary">
+                                    <i class="fas fa-search mr-2"></i>Analyze a Product
+                                </button>
+                                <button onclick="showPage('comparison')" class="btn-secondary">
+                                    <i class="fas fa-balance-scale mr-2"></i>Compare Products
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="bg-features py-16">
+                <div class="container mx-auto px-4">
+                    <h2 class="section-heading text-3xl font-bold text-center mb-12">Powerful Features</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="feature-card">
+                            <div class="feature-icon bg-blue-600">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Sentiment Analysis</h3>
+                            <p class="text-gray-300">Analyze reviews to see what customers truly feel about products beyond simple star ratings.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon bg-indigo-600">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Product Comparison</h3>
+                            <p class="text-gray-300">Compare up to 5 products side-by-side with AI-powered insights highlighting key differences.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon bg-purple-600">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">AI Assistant</h3>
+                            <p class="text-gray-300">Ask questions about products and get intelligent answers powered by Google's Gemini AI.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section class="testimonials-section py-16">
+                <div class="container mx-auto px-4">
+                    <h2 class="section-heading text-3xl font-bold text-center mb-12">What Our Users Say</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="testimonial-card">
+                            <div class="mb-4 flex items-center">
+                                <div class="w-12 h-12 rounded-full testimonial-avatar-1 flex items-center justify-center text-xl font-bold mr-4">S</div>
+                                <div>
+                                    <h4 class="font-semibold">Navjyoth Pradeep</h4>
+                                    <p class="text-sm text-gray-400">E-commerce Entrepreneur</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300">"SmartView has transformed how I research products. The sentiment analysis saves me hours of reading reviews and helped me avoid products with hidden quality issues."</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="mb-4 flex items-center">
+                                <div class="w-12 h-12 rounded-full testimonial-avatar-2 flex items-center justify-center text-xl font-bold mr-4">M</div>
+                                <div>
+                                    <h4 class="font-semibold">Navaneeth Kannan R</h4>
+                                    <p class="text-sm text-gray-400">Tech Reviewer</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300">"The comparison feature is a game-changer. I can now analyze multiple products at once and provide my audience with detailed comparisons backed by data."</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Analyzer Page -->
+        <div id="analyzer-page" class="flex-1 hidden page-content">
+            <div class="container mx-auto px-4 py-8">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold mb-2">Product Analyzer</h1>
+                    <p class="text-gray-300">Enter an Amazon product name or URL to analyze reviews and get AI-powered insights</p>
+                </div>
+
+                <div class="glass-panel p-6 mb-8">
+                    <div class="flex gap-4">
+                        <input type="text" id="productName" placeholder="Enter product name or Amazon URL..." 
+                            class="flex-1 px-4 py-3 border-0 rounded-lg bg-input text-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <button onclick="scrapeProduct()" 
+                                class="btn-primary">
+                            <i class="fas fa-search mr-2"></i>Analyze
+                        </button>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-2">Tip: You can enter a product name or paste a complete Amazon URL (optionally prefixed with @)</p>
+                </div>
+
+                <div id="loading" class="hidden text-center">
+                    <div class="spinner"></div>
+                    <p class="mt-3 text-gray-300">Analyzing product reviews...</p>
+                </div>
+
+                <!-- Enhanced comparison loading animation -->
+                <div id="comparisonLoading" class="hidden">
+                    <div class="glass-panel p-6">
+                        <div class="comparison-loading-container">
+                            <div class="comparison-loading-animation">
+                                <div class="comparison-item comparison-item-1">
+                                    <i class="fas fa-box text-blue-400 text-xl"></i>
+                                </div>
+                                <div class="comparison-item comparison-item-2">
+                                    <i class="fas fa-box text-purple-400 text-xl"></i>
+                                </div>
+                                <div class="comparison-lines">
+                                    <div class="comparison-line"></div>
+                                    <div class="comparison-line"></div>
+                                    <div class="comparison-line"></div>
+                                </div>
+                            </div>
+                            <div class="comparison-loading-text">Comparing selected products...</div>
+                            <div class="comparison-loading-subtext">Analyzing features, prices, and reviews</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="error" class="hidden max-w-2xl mx-auto bg-red-900/70 border border-red-700 text-red-100 px-4 py-3 rounded-lg mb-8"></div>
+
+                <div id="results" class="hidden">
+                    <!-- Product Overview -->
+                    <div class="glass-panel p-6 mb-8">
+                        <div class="flex flex-col md:flex-row gap-8">
+                            <!-- Product Image -->
+                            <div class="w-full md:w-1/3 flex justify-center">
+                                <div class="image-container">
+                                    <img id="productImage" src="" alt="Product Image" class="max-h-64 object-contain rounded-lg product-image">
+                                </div>
+                            </div>
+                            
+                            <!-- Product Details -->
+                            <div class="w-full md:w-2/3">
+                                <h2 id="productNameResult" class="text-2xl font-semibold mb-4 text-white"></h2>
+                                <div class="grid grid-cols-2 gap-6">
+                                    <div class="info-card">
+                                        <h3 class="font-medium text-gray-300"><i class="fas fa-tag mr-2"></i>Price</h3>
+                                        <p id="priceResult" class="text-white font-bold text-lg"></p>
+                                    </div>
+                                    <div class="info-card">
+                                        <h3 class="font-medium text-gray-300"><i class="fas fa-star mr-2"></i>Rating</h3>
+                                        <p id="ratingResult" class="text-white text-lg"></p>
+                                    </div>
+                                    <div class="info-card">
+                                        <h3 class="font-medium text-gray-300"><i class="fas fa-comments mr-2"></i>Reviews</h3>
+                                        <p id="numReviewsResult" class="text-white text-lg"></p>
+                                    </div>
+                                    <div class="info-card">
+                                        <h3 class="font-medium text-gray-300"><i class="fas fa-box mr-2"></i>Availability</h3>
+                                        <p id="availabilityResult" class="text-white text-lg"></p>
+                                    </div>
+                                </div>
+                                <button onclick="addProductToCompareAndGoToCompare()" class="mt-6 btn-secondary w-full">
+                                    <i class="fas fa-plus mr-2"></i>Add to Comparison
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Description -->
+                    <div class="glass-panel p-6 mb-8">
+                        <h2 class="text-2xl font-semibold mb-4 text-white"><i class="fas fa-info-circle mr-2"></i>Product Description</h2>
+                        <div class="p-4 bg-card-dark rounded-lg">
+                            <div id="productDescription" class="text-gray-200 product-description font-noto-sans"></div>
+                        </div>
+                    </div>
+
+                    <!-- Sentiment Analysis -->
+                    <div class="glass-panel p-6 mb-8">
+                        <h2 class="text-2xl font-semibold mb-6 text-white"><i class="fas fa-chart-pie mr-2"></i>Sentiment Analysis</h2>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300"><i class="fas fa-thumbs-up mr-2"></i>Positive</span>
+                                    <span id="positivePercent" class="text-green-400 font-bold">0%</span>
+                                </div>
+                                <div class="w-full bg-gray-700/50 rounded-full h-3">
+                                    <div id="positiveBar" class="progress-bar-positive h-3 rounded-full" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300"><i class="fas fa-minus mr-2"></i>Neutral</span>
+                                    <span id="neutralPercent" class="text-yellow-400 font-bold">0%</span>
+                                </div>
+                                <div class="w-full bg-gray-700/50 rounded-full h-3">
+                                    <div id="neutralBar" class="progress-bar-neutral h-3 rounded-full" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300"><i class="fas fa-thumbs-down mr-2"></i>Negative</span>
+                                    <span id="negativePercent" class="text-red-400 font-bold">0%</span>
+                                </div>
+                                <div class="w-full bg-gray-700/50 rounded-full h-3">
+                                    <div id="negativeBar" class="progress-bar-negative h-3 rounded-full" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review Summaries -->
+                    <div class="glass-panel p-6 mb-8">
+                        <h2 class="text-2xl font-semibold mb-4 text-white"><i class="fas fa-comment-alt mr-2"></i>AI-Powered Review Summaries</h2>
+                        
+                        <!-- Overall Summary -->
+                        <div class="mb-8 p-4 bg-card-dark rounded-lg">
+                            <h3 class="font-medium text-gray-300 mb-2"><i class="fas fa-quote-left mr-2"></i>Overall Summary <span class="text-xs text-blue-400">(Powered by Gemini AI)</span></h3>
+                            <p id="overallSummary" class="text-gray-200 italic font-noto-sans"></p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="summary-card summary-positive">
+                                <h3 class="font-medium text-white mb-3"><i class="fas fa-plus-circle mr-2"></i>Positive Reviews <span class="text-xs text-blue-400">(AI Summary)</span></h3>
+                                <p id="positiveSummary" class="text-gray-300 font-noto-sans"></p>
+                            </div>
+                            <div class="summary-card summary-negative">
+                                <h3 class="font-medium text-white mb-3"><i class="fas fa-minus-circle mr-2"></i>Negative Reviews <span class="text-xs text-blue-400">(AI Summary)</span></h3>
+                                <p id="negativeSummary" class="text-gray-300 font-noto-sans"></p>
+                            </div>
+                            <div class="summary-card summary-neutral">
+                                <h3 class="font-medium text-white mb-3"><i class="fas fa-dot-circle mr-2"></i>Neutral Reviews <span class="text-xs text-blue-400">(AI Summary)</span></h3>
+                                <p id="neutralSummary" class="text-gray-300 font-noto-sans"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ask Gemini AI -->
+                    <div class="glass-panel p-6 mb-8">
+                        <h2 class="text-2xl font-semibold mb-4 text-white"><i class="fas fa-robot mr-2"></i>Ask Gemini AI</h2>
+                        <p class="text-gray-300 mb-4">Have questions about this product? Ask Gemini AI for insights based on the product details and reviews.</p>
+                        
+                        <div class="flex gap-4 mb-4">
+                            <input type="text" id="geminiQuestion" placeholder="Ask a question about this product..." 
+                                class="flex-1 px-4 py-3 border-0 rounded-lg bg-input text-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+                            <button onclick="askGemini()" class="btn-primary">
+                                <i class="fas fa-paper-plane mr-2"></i>Ask
+                            </button>
+                        </div>
+                        
+                        <div id="geminiLoading" class="hidden text-center py-4">
+                            <div class="spinner-sm"></div>
+                            <p class="mt-2 text-gray-300">Getting answer from Gemini...</p>
+                        </div>
+                        
+                        <div id="geminiError" class="hidden bg-red-900/70 border border-red-700 text-red-100 px-4 py-3 rounded-lg mb-4"></div>
+                        
+                        <div id="geminiAnswer" class="hidden p-4 bg-card-dark rounded-lg">
+                            <h3 class="font-medium text-blue-400 mb-2"><i class="fas fa-lightbulb mr-2"></i>Gemini's Answer:</h3>
+                            <div id="geminiAnswerText" class="text-gray-200 font-noto-sans"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Similar Product Recommendations -->
+                    <div class="glass-panel p-6 mb-8">
+                        <h2 class="text-2xl font-semibold mb-4 text-white"><i class="fas fa-thumbs-up mr-2"></i>Similar Product Recommendations</h2>
+                        <p class="text-gray-300 mb-4">Discover similar products that you might like based on this item.</p>
+                        
+                        <div id="recommendationsLoading" class="hidden text-center py-4">
+                            <div class="spinner-sm"></div>
+                            <p class="mt-2 text-gray-300">Finding recommendations...</p>
+                        </div>
+                        
+                        <div id="recommendationsError" class="hidden bg-red-900/70 border border-red-700 text-red-100 px-4 py-3 rounded-lg mb-4"></div>
+                        
+                        <div id="recommendationsResults" class="hidden">
+                            <div id="recommendationsList" class="recommendations-grid"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Page -->
+        <div id="comparison-page" class="flex-1 hidden page-content">
+            <div class="container mx-auto px-4 py-8">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold mb-2">Product Comparison</h1>
+                    <p class="text-gray-300">Compare multiple Amazon products to get a comprehensive analysis</p>
+                </div>
+
+                <!-- Compare Products Section -->
+                <div class="glass-panel p-6 mb-8">
+                    <h2 class="text-xl font-semibold mb-4 text-white"><i class="fas fa-balance-scale mr-2"></i>Select Products to Compare</h2>
+                    <p class="text-gray-300 text-sm mb-4">Search for multiple products, then select 2-10 items to compare them together.</p>
+                    
+                    <div class="mb-6">
+                        <div class="flex gap-4 mb-2">
+                            <input type="text" id="comparisonProductName" placeholder="Enter product name or Amazon URL..." 
+                                class="flex-1 px-4 py-3 border-0 rounded-lg bg-input text-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+                            <button onclick="searchProductForComparison()" class="btn-secondary">
+                                <i class="fas fa-search mr-2"></i>Search
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Add more products to your comparison list by searching for them</p>
+                        
+                        <!-- Product search loading animation -->
+                        <div id="productSearchLoading" class="hidden mt-4">
+                            <div class="glass-panel p-4">
+                                <div class="product-search-loading-container">
+                                    <div class="product-search-animation">
+                                        <div class="search-icon">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                        <div class="search-path"></div>
+                                        <div class="product-box">
+                                            <i class="fas fa-box text-purple-400"></i>
+                                        </div>
+                                    </div>
+                                    <div class="product-search-text">Searching for product...</div>
+                                    <div class="product-search-subtext">This may take a few moments</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-lg font-medium mb-3">Products to Compare</h3>
+                    <div id="productCompareList" class="mb-4">
+                        <p class="text-gray-400 text-sm">Search for products to compare them</p>
+                    </div>
+                    
+                    <div class="flex flex-col gap-4">
+                        <button id="compareButton" onclick="compareProducts()" disabled
+                                class="btn-primary w-full opacity-50 cursor-not-allowed transition-all">
+                            <i class="fas fa-balance-scale mr-2"></i>Compare Selected Products
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Comparison Results -->
+                <div id="comparisonResults" class="hidden mt-8">
+                    <div class="glass-panel p-6 mb-8">
+                        <h2 class="text-2xl font-semibold mb-4 text-white"><i class="fas fa-balance-scale mr-2"></i>Comparison Results</h2>
+                        
+                        <div class="mb-6">
+                            <h3 class="text-lg font-medium text-white mb-3">Comparing <span id="comparisonProductCount">0</span> Products</h3>
+                            <ul id="comparedProductsList" class="text-gray-300 pl-4 mb-4 list-disc font-noto-sans">
+                                <!-- Product names will be inserted here -->
+                            </ul>
+                        </div>
+                        
+                        <div class="p-4 bg-card-dark rounded-lg mb-6">
+                            <div id="comparisonText" class="text-gray-200 comparison-text font-noto-sans"></div>
+                        </div>
+                        
+                        <h3 class="font-medium text-gray-300 mb-4"><i class="fas fa-question-circle mr-2"></i>Ask About These Products</h3>
+                        
+                        <div class="flex gap-4 mb-4">
+                            <input type="text" id="comparisonQuestion" placeholder="Ask a question comparing these products..." 
+                                class="flex-1 px-4 py-3 border-0 rounded-lg bg-input text-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+                            <button onclick="askComparisonQuestion()" class="btn-primary">
+                                <i class="fas fa-paper-plane mr-2"></i>Ask
+                            </button>
+                        </div>
+                        
+                        <div id="comparisonQuestionLoading" class="hidden text-center py-4">
+                            <div class="spinner-sm"></div>
+                            <p class="mt-2 text-gray-300">Getting answer from Gemini...</p>
+                        </div>
+                        
+                        <div id="comparisonQuestionError" class="hidden bg-red-900/70 border border-red-700 text-red-100 px-4 py-3 rounded-lg mb-4"></div>
+                        
+                        <div id="comparisonQuestionAnswer" class="hidden p-4 bg-card-dark rounded-lg">
+                            <h3 class="font-medium text-blue-400 mb-2"><i class="fas fa-lightbulb mr-2"></i>Gemini's Answer:</h3>
+                            <div id="comparisonQuestionText" class="text-gray-200 font-noto-sans"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chatbot Page -->
+        <div id="chatbot-page" class="flex-1 hidden page-content">
+            <div class="container mx-auto px-4 py-8">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-bold mb-2">AI Chatbot</h1>
+                    <p class="text-gray-300">Chat with our AI assistant powered by Gemini</p>
+                </div>
+                
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center mr-3">
+                        <i class="fas fa-robot text-white"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-semibold text-white">Gemini Assistant</h2>
+                        <p class="text-xs text-blue-400">Powered by Google Gemini AI</p>
+                    </div>
+                </div>
+                
+                <!-- Chatbot Interface -->
+                <div class="chat-container">
+                    
+                    <!-- Chat Messages Container -->
+                    <div id="chatMessages" class="chat-messages">
+                        <!-- Welcome Message -->
+                        <div class="chat-message assistant-message">
+                            Hello! I'm your AI assistant powered by Gemini. How can I help you today?
+                        </div>
+                    </div>
+                    
+                    <!-- Chat Input -->
+                    <div class="chat-input-container">
+                        <input type="text" id="chatInput" placeholder="Type your message here..." 
+                            class="chat-input"
+                            onkeydown="if(event.key === 'Enter') sendChatMessage()">
+                        <button id="chatSendBtn" onclick="sendChatMessage()" class="chat-send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-header py-8 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center mb-4 logo-container">
+                        <span class="text-3xl text-gradient font-bold mr-1 logo-text">Smart</span>
+                        <span class="text-3xl font-bold text-white logo-text">View</span>
+                    </div>
+                    <p class="text-gray-400 text-sm max-w-xs">Uncover the truth in product reviews with AI-powered analysis and comparison tools.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-white font-semibold mb-4">Product</h3>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li><a href="#" class="hover:text-white transition-colors">Features</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">API</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-white font-semibold mb-4">Resources</h3>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Support</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-white font-semibold mb-4">Company</h3>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">Privacy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">© 2025 SmartView. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-github"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+</body>
+</html>

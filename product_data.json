@@ -1,0 +1,69 @@
+{
+    "Product Name": "iPhone 16 128 GB: 5G Mobile Phone with Camera Control, A18 Chip and a Big Boost in Battery Life. Works with AirPods; Black",
+    "Price": "\u20b974,400.00",
+    "Rating": "4.4 out of 5 stars",
+    "Number of Reviews": "461 ratings",
+    "Availability": "In stock",
+    "Image URL": "https://m.media-amazon.com/images/I/314AuUzHa2L._SY445_SX342_QL70_ML2_.jpg",
+    "Reviews": [
+        "Upgrading to the iPhone 16 was an absolute breeze! Apple has once again refined the transition process, making data transfer from my old iPhone effortless. With just a few taps, everything\u2014from apps to settings\u2014moved over flawlessly, making the switch feel seamless. The performance is top-notch, with unparalleled smoothness in navigation, app responsiveness, and multitasking. The enhanced battery life, display quality, and camera features make it a worthy upgrade for anyone looking for the best smartphone experience. If you\u2019re considering an upgrade, the iPhone 16 won\u2019t disappoint. Apple continues to set the standard for premium smartphones! Highly recommended!",
+        "Very powerfull phone... Work fast.. camera quality is far good then I expect...",
+        "Good Quality",
+        "Very nice phone. Display is excellent in class. Only con I notice it is not pairing with my series 3 watch.",
+        "Good product overall though heating very quick post charging. Think it\u2019s a general problem with iPhone 16 models",
+        "I am writing to formally complain about my recent purchase of an iPhone 16 from online on Amazon. I received the item on the same day of purchase, but upon unboxing, I noticed that the iPhone came in a mismatched (muddled) box. When I powered it on, the phone was stuck on the \u201cHello\u201d screen, repeatedly displaying \u201cHello\u201d in multiple languages. It was completely unresponsive\u2014none of the buttons, including the power and volume buttons, were functioning. After approximately five hours, the battery finally drained, and the phone shut down. However, after restarting, the same issue persisted, with the device stuck on the \u201cHello\u201d screen again. I contacted Amazon\u2019s support team, who advised me to reach out to Apple Support. Apple Support suggested some troubleshooting steps, but none resolved the issue. Ultimately, they advised me to visit an Apple-authorized service center for a software reinstallation\u2014on a brand-new phone. I then had to travel 5 km to a Maple (Apple-authorized) service center, where they reinstalled the software. The process took about 45\u201350 minutes, finally making the phone functional. I am extremely disappointed with this experience. After purchasing a costly device, I suffered an entire day of inconvenience due to the seller\u2019s inefficiency or the company\u2019s negligence in quality control. This is unacceptable, especially for a premium product. Previously, I had purchased an iPhone 15 online without any issues, but this time, the experience was frustrating and disappointing. I strongly urge you to take action against this seller for supplying what appears to be old or improperly stored stock. I request appropriate compensation for the inconvenience and mental stress caused. Additionally, I advise other customers to be cautious when purchasing from this seller. I hope Amazon takes this matter seriously and ensures such incidents do not happen again.",
+        "A good phone at a good price",
+        "Best in class so far"
+    ],
+    "Sentiment Analysis": {
+        "sentiment_counts": {
+            "POSITIVE": 7,
+            "NEGATIVE": 1
+        },
+        "sentiment_percentages": {
+            "POSITIVE": 87.5,
+            "NEGATIVE": 12.5
+        },
+        "review_sentiments": [
+            [
+                "Upgrading to the iPhone 16 was an absolute breeze! Apple has once again refined the transition process, making data transfer from my old iPhone effortless. With just a few taps, everything\u2014from apps to settings\u2014moved over flawlessly, making the switch feel seamless. The performance is top-notch, with unparalleled smoothness in navigation, app responsiveness, and multitasking. The enhanced battery life, display quality, and camera features make it a worthy upgrade for anyone looking for the best smartphone experience. If you\u2019re considering an upgrade, the iPhone 16 won\u2019t disappoint. Apple continues to set the standard for premium smartphones! Highly recommended!",
+                "POSITIVE"
+            ],
+            [
+                "Very powerfull phone... Work fast.. camera quality is far good then I expect...",
+                "POSITIVE"
+            ],
+            [
+                "Good Quality",
+                "POSITIVE"
+            ],
+            [
+                "Very nice phone. Display is excellent in class. Only con I notice it is not pairing with my series 3 watch.",
+                "POSITIVE"
+            ],
+            [
+                "Good product overall though heating very quick post charging. Think it\u2019s a general problem with iPhone 16 models",
+                "POSITIVE"
+            ],
+            [
+                "I am writing to formally complain about my recent purchase of an iPhone 16 from online on Amazon. I received the item on the same day of purchase, but upon unboxing, I noticed that the iPhone came in a mismatched (muddled) box. When I powered it on, the phone was stuck on the \u201cHello\u201d screen, repeatedly displaying \u201cHello\u201d in multiple languages. It was completely unresponsive\u2014none of the buttons, including the power and volume buttons, were functioning. After approximately five hours, the battery finally drained, and the phone shut down. However, after restarting, the same issue persisted, with the device stuck on the \u201cHello\u201d screen again. I contacted Amazon\u2019s support team, who advised me to reach out to Apple Support. Apple Support suggested some troubleshooting steps, but none resolved the issue. Ultimately, they advised me to visit an Apple-authorized service center for a software reinstallation\u2014on a brand-new phone. I then had to travel 5 km to a Maple (Apple-authorized) service center, where they reinstalled the software. The process took about 45\u201350 minutes, finally making the phone functional. I am extremely disappointed with this experience. After purchasing a costly device, I suffered an entire day of inconvenience due to the seller\u2019s inefficiency or the company\u2019s negligence in quality control. This is unacceptable, especially for a premium product. Previously, I had purchased an iPhone 15 online without any issues, but this time, the experience was frustrating and disappointing. I strongly urge you to take action against this seller for supplying what appears to be old or improperly stored stock. I request appropriate compensation for the inconvenience and mental stress caused. Additionally, I advise other customers to be cautious when purchasing from this seller. I hope Amazon takes this matter seriously and ensures such incidents do not happen again.",
+                "NEGATIVE"
+            ],
+            [
+                "A good phone at a good price",
+                "POSITIVE"
+            ],
+            [
+                "Best in class so far",
+                "POSITIVE"
+            ]
+        ],
+        "overall_sentiment": "Predominantly positive",
+        "summaries": {
+            "overall": "The enhanced battery life, display quality, and camera features make it a worthy upgrade for anyone looking for the best smartphone experience. Think it\u2019s a general problem with iPhone 16 models I am writing to formally complain about my recent purchase of an iPhone 16 from online on Amazon. After purchasing a costly device, I suffered an entire day of inconvenience due to the seller\u2019s inefficiency or the company\u2019s negligence in quality control.",
+            "positive": "The enhanced battery life, display quality, and camera features make it a worthy upgrade for anyone looking for the best smartphone experience. camera quality is far good then I expect. Think it\u2019s a general problem with iPhone 16 models A good phone at a good price Best in class so far.",
+            "negative": "I received the item on the same day of purchase, but upon unboxing, I noticed that the iPhone came in a mismatched (muddled) box. After purchasing a costly device, I suffered an entire day of inconvenience due to the seller\u2019s inefficiency or the company\u2019s negligence in quality control. Previously, I had purchased an iPhone 15 online without any issues, but this time, the experience was frustrating and disappointing.",
+            "neutral": "No neutral reviews."
+        }
+    }
+}

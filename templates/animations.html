@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Showcase - SmartView</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/animations.css">
+    <link rel="stylesheet" href="/static/css/framer-animations.css">
+    
+    <!-- Framer Motion (CDN for demo purposes) -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/framer-motion@4.1.17/dist/framer-motion.js" crossorigin></script>
+    
+    <style>
+        /* Page-specific styles */
+        body {
+            background: linear-gradient(
+                to bottom,
+                rgba(17, 24, 39, 1),
+                rgba(31, 41, 55, 1)
+            );
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            backdrop-filter: blur(10px);
+            background-color: rgba(31, 41, 55, 0.7);
+            border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor">
+        <div class="cursor-outer"></div>
+        <div class="cursor-inner"></div>
+    </div>
+    
+    <!-- Page Transition Overlay -->
+    <div class="page-transition-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed top-0 w-full z-50 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="/" class="flex items-center">
+                <span class="text-2xl font-bold text-white">Smart<span class="text-blue-500">View</span></span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="/" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                <a href="#" class="text-blue-400 border-b-2 border-blue-400 font-medium">Animations</a>
+                <a href="#" class="text-gray-300 hover:text-white transition-colors">Products</a>
+                <a href="#" class="text-gray-300 hover:text-white transition-colors">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Animation Showcase Container (This is where React will mount) -->
+    <main class="pt-24 pb-16">
+        <div id="animation-showcase" class="min-h-screen">
+            <!-- React component will be mounted here -->
+            <div class="container mx-auto px-4 text-center py-16">
+                <div class="animate-spin h-12 w-12 border-4 border-blue-500 rounded-full border-t-transparent mx-auto"></div>
+                <p class="mt-4 text-gray-400">Loading animations...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <span class="text-2xl font-bold text-white">Smart<span class="text-blue-500">View</span></span>
+                    <p class="text-gray-400 mt-2">Advanced animation techniques for modern web applications</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between">
+                <p class="text-sm text-gray-500">© 2023 SmartView. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-sm text-gray-500 hover:text-gray-400 transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-sm text-gray-500 hover:text-gray-400 transition-colors">Terms of Service</a>
+                    <a href="#" class="text-sm text-gray-500 hover:text-gray-400 transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Load our JS -->
+    <script src="/static/js/animations.js"></script>
+    
+    <!-- Webpack would normally bundle everything, but for demo we're using separate script -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel" src="/static/js/components/animations/StaggeredItemList.js"></script>
+    <script type="text/babel" src="/static/js/components/animations/InteractiveElements.js"></script>
+    <script type="text/babel" src="/static/js/components/animations/ScrollAnimations.js"></script>
+    <script type="text/babel" src="/static/js/components/animations/MotionPath.js"></script>
+    <script type="text/babel" src="/static/js/components/animations/index.js"></script>
+    <script type="text/babel" src="/static/js/components/AnimationShowcase.js"></script>
+    <script type="text/babel" src="/static/js/react-integration.js"></script>
+</body>
+</html> 

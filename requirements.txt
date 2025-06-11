@@ -1,0 +1,5 @@
+Flask==2.3.3 
+Werkzeug==2.3.7
+requests==2.26.0
+selectorlib==0.12
+nltk==3.6.2 
