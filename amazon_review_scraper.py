@@ -17,7 +17,7 @@ except LookupError:
     nltk.download('vader_lexicon')
 
 # Gemini API key
-GEMINI_API_KEY = "AIzaSyCwv5jDcQ6E6Hz0Ki5jvRPAITygHHbaS7I"
+GEMINI_API_KEY = "lol"
 
 # Extractor for Amazon product details
 e = Extractor.from_yaml_string("""
